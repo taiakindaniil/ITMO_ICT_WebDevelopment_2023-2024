@@ -82,6 +82,55 @@ print(data.decode())
 
 ### Решение
 
+**Сервер**
+
+Создаем сокет с протоколом TCP и привязываем его к данному хосту с портом 3001. С помощью метода `listen` запускаем режим прослушивания для данного сокета с максимальным количеством подключений равному 1.
+```python
+import socket
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind(('', 3001))
+s.listen(1)
+```
+
+Ожидаем поключение к серверу. После того, как клиент подключится, сервер отправит сообщение-подсказку.
+```python
+conn, addr = s.accept()
+conn.send(b"Enter a b sides of right triangle:")
+```
+
+Одидаем ответ от клиента, обрабатываем его полученные данные и отправляем ответ с результатом вычисленной гипотенузы.
+```python
+data = conn.recv(1024)
+a, b = list(map(int, data.decode().split()))
+hypotenuse = (a**2 + b**2) ** 0.5
+
+conn.sendall(str(hypotenuse).encode())
+conn.close()
+```
+
+**Клиент**
+
+Подключаемся к TCP серверу. 
+```python
+import socket
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(('', 3001))
+```
+
+Получаем сообщение-подсказку. 
+```python
+msg = s.recv(1024).decode()
+print(msg)
+```
+
+Запрашиваем у пользователя данные и отправляем их на сервер. После чего выводим ответ от сервера.
+```python
+data = input().encode()
+s.send(data)
+print(s.recv(1024).decode())
+```
 
 ***
 
