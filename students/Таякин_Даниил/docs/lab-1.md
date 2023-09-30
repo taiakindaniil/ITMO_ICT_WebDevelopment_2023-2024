@@ -145,6 +145,66 @@ print(s.recv(1024).decode())
 
 ### Решение
 
+**Сервер**
+
+Создаем TCP сокет с привязкой к данному хосту. Когда приходит соединение, отправляем http ответ клиенту.
+```python
+import socket
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind(('', 3001))
+s.listen(1)
+
+conn, addr = s.accept()
+http_data = create_http_response(open("./index.html").read())
+conn.sendall(http_data)
+conn.close()
+```
+
+Функция, формирующая http ответ.
+```python
+def create_http_response(body: str) -> bytes:
+  header = f"HTTP/1.2 200 OK\nContent-Type: text/html; charset=utf-8\nContent-Length: {len(body)}"
+  request = f"{header}\n\n{body}"
+  return request.encode()
+```
+
+**Клиент**
+
+Соединяемся с TCP сервером и обрабатываем ответ.
+```python
+import socket
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(('', 3001))
+
+data = read_server_data(s)
+body = read_http_body(data)
+
+print(body)
+```
+
+Функция, читающая ответ с сервера по чанкам
+```python
+def read_server_data(s: socket.socket, chunk_size=1024) -> bytes:
+  result = b""
+  while True:
+    data = s.recv(chunk_size)
+    if not data:
+      break
+    result += data
+  return result
+```
+
+Функция, которая выводит body с http ответа сервера.
+```python
+def read_http_body(response: bytes) -> str:
+  lines = response.decode().splitlines()
+  body_start = next((i for i, line in enumerate(lines) if line == ""), -1)
+  if body_start == -1:
+    raise ValueError("Invalid HTTP")
+  return "\n".join(lines[body_start + 1:])
+```
 
 ***
 
