@@ -212,7 +212,7 @@ def read_http_body(response: bytes) -> str:
 
 ### Описание
 Реализовать двухпользовательский или многопользовательский чат. Реализация
-многопользовательского часа позволяет получить максимальное количество
+многопользовательского чата позволяет получить максимальное количество
 баллов.
 
 - Реализовать с помощью протокола TCP – 100% баллов, с помощью UDP – 80%.
@@ -225,6 +225,104 @@ def read_http_body(response: bytes) -> str:
 
 ### Решение
 
+**Сервер**
+
+Импортируем библиотеки.
+
+```python
+import os
+import socket
+from threading import Thread
+from constants import separator
+```
+
+Основная часть серверной части кода. После создания TCP сервера, объявляем переменную connections, в которой будем хранить все соединения. Для каждого пользователя открываем отдельный thread для прослушивания его сообщений. 
+```python
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# make port reusable
+s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+s.bind(('', 3001))
+s.listen(os.cpu_count())
+
+connections: set[socket.socket] = set()
+while True:
+  conn, addr = s.accept()
+  print(f"{addr} has connected.")
+  connections.add(conn)
+
+  # thread for listening client's messages
+  t = Thread(target=listen_for_client, args=(conn,))
+  t.start()
+```
+
+Функция прослушивания сообщений пользователей. После получения сообщения, каждому подключенному клиенту отправляется полученное сообщение.
+```python
+def listen_for_client(conn):
+  global connections
+
+  while True:
+    try:
+      msg = conn.recv(1024).decode()
+    except Exception as e:
+      # client no longer connected
+      print(f"client no longer connected.")
+      connections.remove(conn)
+    else:
+      msg = msg.replace(separator, ": ")
+
+    # iterate over all connected sockets
+    for client_socket in connections:
+      client_socket.sendall(msg.encode())
+```
+
+**Клиент**
+
+```python
+import socket
+import random
+from threading import Thread
+from datetime import datetime
+from colorama import Fore
+from constants import separator, colors
+```
+
+В основной части подклбчаемся к TCP серверу. Определяем цвет для пользователя, чтобы в чате сообщения выделялись определенным цветом. Запрашиваем его имя. После чего, создаем thread, в котором данный клиент будет получать сообщения от сервера.
+```python
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(('', 3001))
+
+# choose a random color for the client
+user_color = random.choice(colors)
+username = input("Enter your name: ")
+
+# make a thread that listens for messages to this client & print them
+t = Thread(target=listen_for_messages, args=(s,))
+t.start()
+```
+
+В этой функции идет вывод полученных ретранслированных сообщений от сервера. 
+```python
+def listen_for_messages(s: socket):
+  try:
+    while True:
+      msg = s.recv(1024).decode()
+      print(msg)
+  finally:
+    s.close()
+```
+
+Данный код обрабатывает отправку сообщений от данного клиента.
+```python
+while True:
+  msg = input()
+
+  if msg.lower() == '/exit':
+    break
+
+  date_now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+  s.sendall(f"{user_color}[{date_now}] {username}{separator}{msg}{Fore.RESET}".encode())
+```
 
 ***
 
