@@ -20,6 +20,9 @@ class Car(models.Model):
     color = models.CharField(max_length=30)
     owners = models.ManyToManyField(CarOwner, through="CarOwnership")
 
+    def __str__(self) -> str:
+        return self.model.capitalize()
+
 
 class CarOwnership(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
