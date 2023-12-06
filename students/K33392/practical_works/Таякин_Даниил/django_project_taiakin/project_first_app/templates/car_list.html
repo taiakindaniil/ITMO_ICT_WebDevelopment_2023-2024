@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>All cars</h1>
+
+    <div class="main">
+  
+        {% for car in object_list %}
+      
+        <p>Model: {{ car.model }}</p>
+        <p>Number: {{ car.number }}</p>
+        <p>Color: {{ car.color }}</p>
+        <hr/>
+
+        <!-- If objet_list is empty  -->
+        {% empty %}
+        <li>No objects yet.</li>
+        {% endfor %}
+      
+    </div>
+</body>
+</html>
