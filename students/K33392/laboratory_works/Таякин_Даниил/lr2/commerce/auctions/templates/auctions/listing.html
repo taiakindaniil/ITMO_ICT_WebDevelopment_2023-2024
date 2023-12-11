@@ -1,0 +1,79 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+	<h2>Listing: {{ listing.title }}</h2>
+	{% if listing.status == False %}
+		<h2 style="color:red">Closed</h2>
+	{% endif %}
+
+	{% if user == listing.user and listing.status == True %}
+		<form method="POST">
+			{% csrf_token %}
+			<input type="submit" name="close_listing_button" value="Close Listing">
+		</form>
+	{% endif %}
+
+	<form method="POST">
+		{% csrf_token %}
+		<input type="submit" name="watchlist_button" value="{{ added }}">
+	</form>
+
+	<div>
+		{% if listing.image %}
+			<div class="listing-image" style="background-image: url({{ listing.image }})"></div>
+		{% endif %}
+
+		{% if listing.description %}
+			<div class="listing-desc">{{ listing.description }}</div>
+		{% endif %}
+	</div>
+
+	<div style="margin: 40px 0">
+		<div><b>Starting Price:</b> ${{ listing.price }}</div>
+		{% if listing.bids.last.price %}
+			<div class="listing-price">${{ listing.bids.last.price }}</div>
+		{% endif %}
+
+		{% if user == listing.bids.last.user %}
+			<div>Your bid is the current bid.</div>
+		{% endif %}
+
+		{% if listing.status == True %}
+			<form method="POST">
+				{% csrf_token %}
+				<input type="hidden" name="current_bid" value="{{ listing.bids.last.price }}">
+				<input type="number" name="bid" placeholder="Bid" min="{{ listing.bids.last.price }}">
+				<input type="submit" name="submit" value="Place Bid">
+			</form>
+		{% endif %}
+	</div>
+
+	<div style="margin: 40px 0">
+		<h3>Details</h3>
+		<ul>
+			<li>Listed by: <b>{{ listing.user.username }}</b></li>
+			{% if listing.category %}
+				<li>Category: {{ listing.category.title }}</li>
+			{% endif %}
+		</ul>
+	</div>
+	<hr>
+	<div>
+		<h3>Comments</h3>
+		<form method="POST">
+			{% csrf_token %}
+			<input type="text" name="comment" placeholder="Type your comment...">
+			<input type="number" name="rating" min="1" max="10">
+			<input type="submit" name="submit_comment" value="Send">
+		</form>
+
+		<hr>
+		{% if listing.bids.last.price %}
+			<div>
+				{% for comment in comments %}
+					<div><b>{{ comment.user.username }} {{ comment.rating }}/10:</b><br>{{ comment.comment }}</div>
+				{% endfor %}
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}

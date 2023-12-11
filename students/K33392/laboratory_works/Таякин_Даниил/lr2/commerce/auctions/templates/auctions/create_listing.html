@@ -1,0 +1,27 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+	<h2>Create Listing</h2>
+
+	<form method="POST">
+		{% csrf_token %}
+		<input type="text" name="title" placeholder="Title" required>
+		<br>
+		<input type="text" name="desc" placeholder="Description (optional)">
+		<br>
+		<input type="number" name="price" placeholder="Strating Price" required>
+		<br>
+		<input type="text" name="url" placeholder="Image URL (optional)">
+		<br>
+		<label>Select category (optional)</label>
+		<select name="category">
+			<option>None</option>
+			{% for category in categories %}
+				<option value="{{ category.id }}">{{ category.title }}</option>
+			{% endfor %}
+		</select>
+		<br>
+		<input type="submit" name="submit" value="Create">
+	</form>
+
+{% endblock %}

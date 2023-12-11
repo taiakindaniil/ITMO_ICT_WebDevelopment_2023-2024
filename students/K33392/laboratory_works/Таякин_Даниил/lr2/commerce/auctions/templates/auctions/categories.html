@@ -1,0 +1,37 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+	{% if category %}
+		<h2>Category: {{ category.title }}</h2>
+
+		<div class="listing-block">
+		{% for listing in listings %}
+			{% if listing.status %}
+				<a href="{% url 'listing' listing.id %}" class="listing-item">
+					<div class="img" style="background-image: url({{ listing.image }})"></div>
+					<div style="margin: 10px 20px;">
+						<div class="title">{{ listing.title }}</div>
+						<div><b>Starting Price:</b> ${{ listing.price }}</div>
+						{% if listing.bids.last.price %}
+							<div><b>Current Price:</b> ${{ listing.bids.last.price }}</div>
+						{% endif %}
+
+						{% if listing.description %}
+							<div class="desc">{{ listing.description }}</div>
+						{% endif %}
+					</div>
+				</a>
+			{% endif %}
+		{% endfor %}
+		</div>
+	{% else %}
+		<h2>Categories</h2>
+
+		<div class="category-block">
+		{% for category in categories %}
+			<a href="{% url 'category' category.id %}" class="category-item" style="background-image: url({{ category.image.url }})" title="{{ category.title }}">{{ category.title }}</a>
+		{% endfor %}
+		</div>
+	{% endif %}
+
+{% endblock %}
