@@ -6,6 +6,9 @@ class CarOwner(models.Model):
     last_name = models.CharField(max_length=30)
     birth_date = models.DateTimeField(null=True)
 
+    def __str__(self) -> str:
+        return self.first_name.capitalize() + " " + self.last_name.capitalize()
+
 
 class DriverLicense(models.Model):
     owner = models.ForeignKey(CarOwner, on_delete=models.CASCADE)
