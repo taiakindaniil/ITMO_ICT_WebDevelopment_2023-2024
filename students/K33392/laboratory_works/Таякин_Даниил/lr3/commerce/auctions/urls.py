@@ -10,5 +10,6 @@ r.register('listings', ListingViewSet)
 r.register('watchlists', WatchlistViewSet)
 r.register('bids', BidViewSet)
 r.register('comments', CommentViewSet)
+r.register('listing_comments', ListingCommentsViewSet, basename='Listing')
 
 urlpatterns = r.urls

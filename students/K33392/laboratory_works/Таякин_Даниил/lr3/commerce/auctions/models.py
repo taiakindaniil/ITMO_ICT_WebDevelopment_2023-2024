@@ -9,7 +9,7 @@ class User(AbstractUser):
 
 class Category(models.Model):
 	title = models.CharField(max_length=64)
-	image = models.ImageField(upload_to="media/categories")
+	image = models.ImageField(upload_to="media/categories", blank=True, null=True)
 
 	def __str__(self):
 		return self.title
