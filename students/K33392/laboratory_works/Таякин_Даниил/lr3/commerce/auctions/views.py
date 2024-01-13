@@ -28,6 +28,12 @@ class ListingViewSet(viewsets.ModelViewSet):
         serializer = ListingSerializer(listing)
         return Response(serializer.data)
 
+    @action(detail=True, methods=["GET"])
+    def bids(self, request, pk=None):
+        qs = Bid.objects.filter(listing_id=pk)
+        ser = BidSerializer(qs, many=True)
+        return Response(ser.data)
+
 
 class WatchlistViewSet(viewsets.ModelViewSet):
     queryset = Watchlist.objects.all()
@@ -40,6 +46,12 @@ class WatchlistViewSet(viewsets.ModelViewSet):
         watchlist.save()
         serializer = WatchlistSerializer(watchlist)
         return Response(serializer.data)
+
+    @action(detail=False, methods=["GET"])
+    def my(self, request, pk=None):
+        qs = Watchlist.objects.filter(user_id=request.user.pk)
+        ser = WatchlistSerializer(qs, many=True)
+        return Response(ser.data)
 
 
 class BidViewSet(viewsets.ModelViewSet):
