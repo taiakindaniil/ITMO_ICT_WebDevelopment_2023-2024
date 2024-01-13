@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Практическая работа #3.1 - Web-программирвоание</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u041f\u0440\u0430\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u0440\u0430\u0431\u043e\u0442\u0430 #3.1";
+        var mkdocs_page_input_path = "pract-3-1.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Web-программирвоание
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Главная</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lab-1/">Лабораторная работа #1</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lab-2/">Лабораторная работа #2</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lab-3/">Лабораторная работа #3</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lab-4/">Лабораторная работа #4</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Практическая работа #3.1</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">Задание #1</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">Задание #2</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">Задание #3</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Web-программирвоание</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Практическая работа #3.1</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="31">Практическая работа #3.1</h1>
+<h2 id="1">Задание #1</h2>
+<p><em>Напишите запрос на создание 6-7 новых автовладельцев и 5-6 автомобилей, каждому автовладельцу назначьте удостоверение и от 1 до 3 автомобилей.</em></p>
+<p>Для начала создадим 6 владельцев автомобилей. Для создания объекта в базе данных воспользуемся методом <code>CarOwner.objects.create</code>. Данные сохранены в списке <code>owners_data</code>.</p>
+<pre><code class="language-python"># Create 6 car owners
+owners_data = [
+    {
+        &quot;first_name&quot;: &quot;Michael&quot;,
+        &quot;last_name&quot;: &quot;Johnson&quot;,
+    },
+    {
+        &quot;first_name&quot;: &quot;Sarah&quot;,
+        &quot;last_name&quot;: &quot;Williams&quot;,
+    },
+    {
+        &quot;first_name&quot;: &quot;David&quot;,
+        &quot;last_name&quot;: &quot;Brown&quot;,
+    },
+    {
+        &quot;first_name&quot;: &quot;Emily&quot;,
+        &quot;last_name&quot;: &quot;Davis&quot;,
+    },
+    {
+        &quot;first_name&quot;: &quot;Matthew&quot;,
+        &quot;last_name&quot;: &quot;Robinson&quot;,
+    },
+    {
+        &quot;first_name&quot;: &quot;Olivia&quot;,
+        &quot;last_name&quot;: &quot;Martinez&quot;,
+    },
+]
+
+owners = [CarOwner.objects.create(**data) for data in owners_data]
+</code></pre>
+<p>Теперь создадим автомобили и присвоим их каждому владельцу соответственно.</p>
+<pre><code class="language-python"># Create 6 cars
+cars_data = [
+    {&quot;number&quot;: &quot;PQR789&quot;, &quot;model&quot;: &quot;Audi&quot;, &quot;color&quot;: &quot;Black&quot;},
+    {&quot;number&quot;: &quot;STU012&quot;, &quot;model&quot;: &quot;Mercedes&quot;, &quot;color&quot;: &quot;Red&quot;},
+    {&quot;number&quot;: &quot;VWX345&quot;, &quot;model&quot;: &quot;Volkswagen&quot;, &quot;color&quot;: &quot;Gray&quot;},
+    {&quot;number&quot;: &quot;YZA678&quot;, &quot;model&quot;: &quot;Subaru&quot;, &quot;color&quot;: &quot;Blue&quot;},
+    {&quot;number&quot;: &quot;BCD901&quot;, &quot;model&quot;: &quot;Volvo&quot;, &quot;color&quot;: &quot;Silver&quot;},
+    {&quot;number&quot;: &quot;EFG234&quot;, &quot;model&quot;: &quot;Tesla&quot;, &quot;color&quot;: &quot;White&quot;},
+]
+
+for data in cars_data:
+    Car.objects.create(**data)
+</code></pre>
+<pre><code class="language-python"># Assign 1 to 3 cars for each owner
+for owner, car in zip(CarOwner.objects.all(), Car.objects.all()):
+    CarOwnership.objects.create(
+        owner=owner,
+        car=car,
+        start_date=timezone.now(),
+        end_date=timezone.now() + timedelta(days=365),
+    )
+</code></pre>
+<p>Создадим права для вождения для каждого владельца автомобиля.</p>
+<pre><code class="language-python"># Create driver's licenses for each owner
+licenses_data = [
+    {
+        &quot;owner&quot;: owner,
+        &quot;number&quot;: f&quot;DL{index + 1}&quot;,
+        &quot;type_id&quot;: &quot;A&quot;,
+        &quot;issue_date&quot;: timezone.now(),
+    }
+    for index, owner in enumerate(owners)
+]
+
+for data in licenses_data:
+   DriverLicense.objects.create(**data)
+</code></pre>
+<p>Весь написанный скрипт выполняем данной командой:</p>
+<pre><code class="language-sh">python3 manage.py shell &lt; 3.1/task1.py
+</code></pre>
+<h2 id="2">Задание #2</h2>
+<p><em>По созданным в пр.1 данным написать следующие запросы на фильтрацию:</em></p>
+<ul>
+<li><em>Где это необходимо, добавьте related_name к полям модели</em></li>
+<li><em>Выведете все машины марки “Toyota” (или любой другой марки, которая у вас есть)</em></li>
+<li><em>Найти всех водителей с именем “Олег” (или любым другим именем на ваше усмотрение)</em></li>
+<li><em>Взяв любого случайного владельца получить его id, и по этому id получить экземпляр удостоверения в виде объекта модели (можно в 2 запроса)</em></li>
+<li><em>Вывести всех владельцев красных машин (или любого другого цвета, который у вас присутствует)</em></li>
+<li><em>Найти всех владельцев, чей год владения машиной начинается с 2010 (или любой другой год, который присутствует у вас в базе)</em></li>
+</ul>
+<p>Для получения всех автомобилей марки Tesla воспользуемся методом <code>Car.objects.filter</code>.</p>
+<pre><code class="language-python">tesla_cars = Car.objects.filter(model=&quot;Tesla&quot;)
+
+for car in tesla_cars:
+    print(f&quot;Car Number: {car.number}&quot;)
+    print(f&quot;Model: {car.model}&quot;)
+    print(f&quot;Color: {car.color}&quot;)
+    print(&quot;--------------------&quot;)
+</code></pre>
+<p>Для поиска водителей с именем "Michael" воспользуемся методом <code>CarOwner.objects.filter</code>.</p>
+<pre><code class="language-python">michael_drivers = CarOwner.objects.filter(first_name=&quot;Michael&quot;)
+for driver in michael_drivers:
+    print(f&quot;Driver Name: {driver.first_name}&quot;)
+    print(f&quot;Date of Birth: {driver.birth_date}&quot;)
+    print(&quot;--------------------&quot;)
+</code></pre>
+<p>Для фильтрации прав по владельцу выполним два запроса при помощи методов <code>CarOwner.objects.get</code> и <code>DriverLicense.objects.filter</code>.</p>
+<pre><code class="language-python">driver = CarOwner.objects.get(first_name=&quot;Sarah&quot;)
+print(f&quot;Driver Name: {driver.first_name}&quot;)
+print(f&quot;Date of Birth: {driver.birth_date}&quot;)
+print(&quot;--------------------&quot;)
+
+driver_licenses = DriverLicense.objects.filter(owner=driver)
+for license in driver_licenses:
+    print(f&quot;License Number: {license.number}&quot;)
+    print(f&quot;License Type: {license.type_id}&quot;)
+    print(f&quot;Issue Date: {license.issue_date}&quot;)
+    print(&quot;--------------------&quot;)
+</code></pre>
+<p>Для получения всех красных машин воспользуемся методом <code>Car.objects.filter</code>.</p>
+<pre><code class="language-python">red_cars = Car.objects.filter(color=&quot;Red&quot;)
+for car in red_cars:
+    print(f&quot;Car Number: {car.number}&quot;)
+    print(f&quot;Model: {car.model}&quot;)
+    print(f&quot;Color: {car.color}&quot;)
+    print(&quot;--------------------&quot;)
+</code></pre>
+<p>Для получения всех владельцев, которые владеют автомобилем начиная с 2023 года воспользуемся методом <code>CarOwner.objects.filter</code>.</p>
+<pre><code class="language-python">target_year = 2023
+owners_with_cars_from_year = CarOwner.objects.filter(
+    carownership__start_date__year=target_year
+).distinct()
+
+for owner in owners_with_cars_from_year:
+    print(f&quot;Owner Name: {owner.first_name}&quot;)
+    print(f&quot;Date of Birth: {owner.birth_date}&quot;)
+    print(&quot;--------------------&quot;)
+</code></pre>
+<h2 id="3">Задание #3</h2>
+<p><em>Необходимо реализовать следующие запросы c применением описанных методов:</em></p>
+<ul>
+<li><em>Вывод даты выдачи самого старшего водительского удостоверения</em></li>
+<li><em>Укажите самую позднюю дату владения машиной, имеющую какую-то из существующих моделей в вашей базе</em></li>
+<li><em>Выведите количество машин для каждого водителя</em></li>
+<li><em>Подсчитайте количество машин каждой марки</em></li>
+<li><em>Отсортируйте всех автовладельцев по дате выдачи удостоверения (Примечание: чтобы не выводить несколько раз одни и те же таблицы воспользуйтесь методом .distinct()</em></li>
+</ul>
+<p>Вывод даты выдачи самого старого водительского удостоверения.</p>
+<pre><code class="language-python">oldest_license = DriverLicense.objects.order_by(&quot;issue_date&quot;).first()
+print(f&quot;License Number: {oldest_license.number}&quot;)
+</code></pre>
+<p>Укажите самую позднюю дату владения машиной, имеющую какую-то из существующих моделей в вашей базе.</p>
+<pre><code class="language-python">oldest_ownership = CarOwnership.objects.order_by(&quot;start_date&quot;).first()
+print(f&quot;Oldest ownership: {oldest_ownership.start_date}&quot;)
+</code></pre>
+<p>Выведите количество машин для каждого водителя.</p>
+<pre><code class="language-python">owners_with_car_count = CarOwner.objects.annotate(car_count=Count(&quot;carownership&quot;))
+for owner in owners_with_car_count:
+    print(f&quot;Owner Name: {owner.first_name}&quot;)
+    print(f&quot;Number of cars: {owner.car_count}&quot;)
+    print(&quot;--------------------&quot;)
+</code></pre>
+<p>Подсчитайте количество машин каждой марки.</p>
+<pre><code class="language-python">cars_by_model = Car.objects.values(&quot;model&quot;).annotate(car_count=Count(&quot;carownership&quot;))
+for car in cars_by_model:
+    print(f&quot;Car Model: {car['model']}&quot;)
+    print(f&quot;Number of cars: {car['car_count']}&quot;)
+    print(&quot;--------------------&quot;)
+</code></pre>
+<p>Отсортируйте всех автовладельцев по дате выдачи удостоверения.</p>
+<pre><code class="language-python">owners_by_license_issue_date = CarOwner.objects.order_by(&quot;driverlicense__issue_date&quot;)
+for owner in owners_by_license_issue_date:
+    print(f&quot;Owner Name: {owner.first_name}&quot;)
+    print(&quot;--------------------&quot;)
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../lab-4/" class="btn btn-neutral float-left" title="Лабораторная работа #4"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../lab-4/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

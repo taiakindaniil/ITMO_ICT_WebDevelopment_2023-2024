@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Лабораторная работа #3 - Web-программирвоание</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u041b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u043d\u0430\u044f \u0440\u0430\u0431\u043e\u0442\u0430 #3";
+        var mkdocs_page_input_path = "lab-3.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Web-программирвоание
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Главная</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lab-1/">Лабораторная работа #1</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lab-2/">Лабораторная работа #2</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Лабораторная работа #3</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">Задание</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Реализация</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#modelspy">models.py</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#serializerspy">serializers.py</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#viewspy">views.py</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#settingspy">settings.py</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#urlspy">urls.py</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#endpoints">Endpoints</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#bids">Bids</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#success-responses">Success Responses</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#success-responses_1">Success Responses</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#categories">Categories</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#success-responses_2">Success Responses</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#success-responses_3">Success Responses</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#comments">Comments</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#success-responses_4">Success Responses</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#success-responses_5">Success Responses</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#listings">Listings</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#success-responses_6">Success Responses</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#success-responses_7">Success Responses</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#users">Users</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#success-responses_8">Success Responses</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#success-responses_9">Success Responses</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#watchlists">Watchlists</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#success-responses_10">Success Responses</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#success-responses_11">Success Responses</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">Пример</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lab-4/">Лабораторная работа #4</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../pract-3-1/">Практическая работа #3.1</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Web-программирвоание</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Лабораторная работа #3</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="3">Лабораторная работа #3</h1>
+<h2 id="_1">Задание</h2>
+<p>Свой вариант. Реализация серверной части веб сервиса аукционов средствами django, djangorestframework, djoser.</p>
+<h2 id="_2">Реализация</h2>
+<h3 id="modelspy">models.py</h3>
+<p>Модель <code>User</code> используется для авторизации пользователей.</p>
+<pre><code class="language-python">class User(AbstractUser):
+    pass
+</code></pre>
+<p>Модель <code>Listing</code> хранит данные о проходящем аукционе.</p>
+<pre><code class="language-python">class Listing(models.Model):
+    title = models.CharField(max_length=64)
+    image = models.URLField(max_length=280, blank=True, null=True)
+    description = models.CharField(max_length=280, blank=True, null=True)
+    category = models.ForeignKey(&quot;Category&quot;, on_delete=models.CASCADE, related_name=&quot;listings&quot;, blank=True, null=True)
+    price = models.IntegerField()
+    user = models.ForeignKey(&quot;User&quot;, on_delete=models.CASCADE)
+    status = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.title
+</code></pre>
+<p><code>Category</code> хранит информацию о категориях на которые разбиваются проходящие аукционы.</p>
+<pre><code class="language-python">class Category(models.Model):
+    title = models.CharField(max_length=64)
+    image = models.ImageField(upload_to=&quot;media/categories&quot;)
+
+    def __str__(self):
+        return self.title
+</code></pre>
+<p><code>Bid</code> хранит информацию о ставках на аукционе.</p>
+<pre><code class="language-python">class Bid(models.Model):
+    user = models.ForeignKey(&quot;User&quot;, on_delete=models.CASCADE, related_name=&quot;bids&quot;)
+    listing = models.ForeignKey(&quot;Listing&quot;, on_delete=models.CASCADE, related_name=&quot;bids&quot;)
+    price = models.IntegerField()
+
+    def __str__(self):
+        return f&quot;{self.id}. {self.user.username} bid {self.listing.title} for {self.price}&quot;
+</code></pre>
+<p><code>Comment</code> хранит данные о комментариях под аукционами, включая рейтинг (1-10).</p>
+<pre><code class="language-python">class Comment(models.Model):
+    user = models.ForeignKey(&quot;User&quot;, on_delete=models.CASCADE, related_name=&quot;comments&quot;)
+    listing = models.ForeignKey(&quot;Listing&quot;, on_delete=models.CASCADE, related_name=&quot;comments&quot;)
+    comment = models.CharField(max_length=280)
+    rating = models.IntegerField(
+        default=1,
+        validators=[
+            MaxValueValidator(10),
+            MinValueValidator(1)
+        ]
+    )
+
+    def __str__(self):
+        return f&quot;{self.id}. {self.user}&quot;
+</code></pre>
+<p><code>Watchlist</code> хранит информацию об отслеживаемых аукционах пользователями.</p>
+<pre><code class="language-python">class Watchlist(models.Model):
+    user = models.ForeignKey(&quot;User&quot;, on_delete=models.CASCADE, related_name=&quot;watchlist&quot;)
+    listing = models.ForeignKey(&quot;Listing&quot;, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f&quot;{self.id}. {self.user.username}: {self.listing.title}&quot;
+</code></pre>
+<h3 id="serializerspy">serializers.py</h3>
+<p>Для CRUD операций над моделями через API нам необходимо написать <code>ModelSerializer</code> для каждой модели.</p>
+<p>В <code>MyUserSerializer</code> нам необходимо переопределить метод create, так как у нас кастомная модель пользователя и нам нужно сохранять хеш пароля в базу.</p>
+<pre><code class="language-python">class MyUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            &quot;id&quot;,
+            &quot;username&quot;,
+            &quot;email&quot;,
+            &quot;first_name&quot;,
+            &quot;last_name&quot;,
+        )
+    def create(self, validated_data):
+        return super().create({**validated_data, &quot;password&quot;: make_password(validated_data[&quot;password&quot;])})
+</code></pre>
+<p>Все остальные классы остаются без переопределений методов и выглядят следующим образом:</p>
+<pre><code class="language-python">class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = (&quot;id&quot;, &quot;title&quot;, &quot;image&quot;)
+
+
+class ListingSerializer(serializers.ModelSerializer):
+    category = CategorySerializer()
+    user = MyUserSerializer()
+    class Meta:
+        model = Listing
+        fields = (&quot;id&quot;, &quot;title&quot;, &quot;image&quot;, &quot;description&quot;, &quot;category&quot;, &quot;price&quot;, &quot;user&quot;, &quot;status&quot;)
+
+
+class WatchlistSerializer(serializers.ModelSerializer):
+    user = MyUserSerializer()
+    listing = ListingSerializer()
+    class Meta:
+        model = Watchlist
+        fields = (&quot;id&quot;, &quot;user&quot;, &quot;listing&quot;)
+
+
+class BidSerializer(serializers.ModelSerializer):
+    user = MyUserSerializer()
+    listing = ListingSerializer()
+    class Meta:
+        model = Watchlist
+        fields = (&quot;id&quot;, &quot;user&quot;, &quot;listing&quot;, &quot;price&quot;)
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    user = MyUserSerializer()
+    listing = ListingSerializer()
+    class Meta:
+        model = Comment
+        fields = (&quot;id&quot;, &quot;user&quot;, &quot;listing&quot;, &quot;comment&quot;, &quot;rating&quot;)
+</code></pre>
+<p>В некоторых сериализаторах можно найти обращение к другим сериализаторам для возвращения данных о них.</p>
+<h3 id="viewspy">views.py</h3>
+<p>Класс <code>viewsets.ModelViewSet</code> из модуля <code>rest_framework</code> позволяет нам с легкостью создать представления для наших моделей данных без написания дополнительной логике по обработке запросов.</p>
+<pre><code class="language-python">class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = MyUserSerializer
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class ListingViewSet(viewsets.ModelViewSet):
+    queryset = Listing.objects.all()
+    serializer_class = ListingSerializer
+
+
+class WatchlistViewSet(viewsets.ModelViewSet):
+    queryset = Watchlist.objects.all()
+    serializer_class = WatchlistSerializer
+
+
+class BidViewSet(viewsets.ModelViewSet):
+    queryset = Bid.objects.all()
+    serializer_class = BidSerializer
+
+
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+</code></pre>
+<h3 id="settingspy">settings.py</h3>
+<p>Нам необходимо установить несколько модулей, необходимых для авторизации, создания API и генерации документации.</p>
+<pre><code class="language-python">INSTALLED_APPS = [
+    ...
+    'auctions',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
+    'drf-yasg',
+]
+</code></pre>
+<p>Для того, чтобы <code>djoser</code> знал о том, какой serializer использовать для модели пользователя, нам необходимо указать путь до класса.</p>
+<pre><code class="language-python">DJOSER = {
+    'SERIALIZERS': {
+        'user_create': 'auctions.serializers.MyUserSerializer',
+    },
+}
+</code></pre>
+<p>По умолчанию все пути нашего сервера будут доступны без авторизации. Нам необходимо обратное, поэтому укажем права доступа в данном файле.</p>
+<pre><code class="language-python">REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
+</code></pre>
+<p>Для корректной работы авторизации по токену, указываем настройки для Swagger. При добавлении токена в поле для авторизации, добавляем к началу также <code>Token &lt;TOKEN&gt;</code>.</p>
+<pre><code class="language-python">SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'api_key': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization'
+        }
+    },
+}
+</code></pre>
+<h3 id="urlspy">urls.py</h3>
+<p>Определим пути нашего сервера. Для клиента будут доступны:</p>
+<ul>
+<li><code>api/</code></li>
+<li><code>auth/</code></li>
+<li><code>admin/</code></li>
+<li><code>swagger/</code></li>
+</ul>
+<pre><code class="language-python">urlpatterns = [
+    path(&quot;admin/&quot;, admin.site.urls),
+    path(&quot;api/&quot;, include(&quot;auctions.urls&quot;)),
+    path(&quot;auth/&quot;, include('djoser.urls')),
+    path(&quot;auth/&quot;, include('djoser.urls.authtoken')),
+    path(
+        &quot;swagger/&quot;,
+        schema_view.with_ui(&quot;swagger&quot;, cache_timeout=0),
+        name=&quot;schema-swagger-ui&quot;,
+    ),
+]
+</code></pre>
+<p>Более того доступные пути в <code>api/</code></p>
+<ul>
+<li><code>users/</code></li>
+<li><code>categories/</code></li>
+<li><code>listings/</code></li>
+<li><code>watchlists/</code></li>
+<li><code>bids/</code></li>
+<li><code>comments/</code></li>
+</ul>
+<pre><code class="language-python">r = DefaultRouter()
+r.register('users', UserViewSet)
+r.register('categories', CategoryViewSet)
+r.register('listings', ListingViewSet)
+r.register('watchlists', WatchlistViewSet)
+r.register('bids', BidViewSet)
+r.register('comments', CommentViewSet)
+
+urlpatterns = r.urls
+</code></pre>
+<h3 id="endpoints">Endpoints</h3>
+<h3 id="bids">Bids</h3>
+<p><strong>URL</strong> : <code>/api/bids/</code></p>
+<p><strong>Method</strong> : <code>GET, POST</code></p>
+<p><strong>Auth required</strong> : YES</p>
+<p><strong>Permissions required</strong> : IsAuthenticated</p>
+<h4 id="success-responses">Success Responses</h4>
+<p><strong>Code</strong> : <code>200 OK</code></p>
+<p><strong>Content POST</strong> :</p>
+<pre><code class="language-json">{
+    &quot;id&quot;: 1,
+    &quot;user&quot;: {
+        &quot;id&quot;: 2,
+        &quot;username&quot;: &quot;admin&quot;,
+        &quot;email&quot;: &quot;daniel@pewpee.com&quot;,
+        &quot;first_name&quot;: &quot;&quot;,
+        &quot;last_name&quot;: &quot;&quot;
+    },
+    &quot;listing&quot;: {
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;Broomstick&quot;,
+        &quot;image&quot;: &quot;https://static.wikia.nocookie.net/harrypotter/images/2/29/Nimbus_200.jpg/revision/latest/scale-to-width-down/540?cb=20170721202204&amp;path-prefix=pl&quot;,
+        &quot;description&quot;: &quot;Nimbus 2000 Broomstick&quot;,
+        &quot;category&quot;: {
+            &quot;id&quot;: 5,
+            &quot;title&quot;: &quot;Sports&quot;,
+            &quot;image&quot;: &quot;http://127.0.0.1:8000/media/categories/sports-categoty3x.png&quot;
+        },
+        &quot;price&quot;: 50,
+        &quot;user&quot;: {
+            &quot;id&quot;: 1,
+            &quot;username&quot;: &quot;daniel&quot;,
+            &quot;email&quot;: &quot;daniel@pewpee.com&quot;,
+            &quot;first_name&quot;: &quot;&quot;,
+            &quot;last_name&quot;: &quot;&quot;
+        },
+        &quot;status&quot;: false
+    },
+    &quot;price&quot;: 56
+}
+</code></pre>
+<p><strong>Content GET</strong> :</p>
+<pre><code class="language-json">[
+    {
+        &quot;id&quot;: 1,
+        &quot;user&quot;: {
+            &quot;id&quot;: 2,
+            &quot;username&quot;: &quot;admin&quot;,
+            &quot;email&quot;: &quot;daniel@pewpee.com&quot;,
+            &quot;first_name&quot;: &quot;&quot;,
+            &quot;last_name&quot;: &quot;&quot;
+        },
+        &quot;listing&quot;: {
+            &quot;id&quot;: 1,
+            &quot;title&quot;: &quot;Broomstick&quot;,
+            &quot;image&quot;: &quot;https://static.wikia.nocookie.net/harrypotter/images/2/29/Nimbus_200.jpg/revision/latest/scale-to-width-down/540?cb=20170721202204&amp;path-prefix=pl&quot;,
+            &quot;description&quot;: &quot;Nimbus 2000 Broomstick&quot;,
+            &quot;category&quot;: {
+                &quot;id&quot;: 5,
+                &quot;title&quot;: &quot;Sports&quot;,
+                &quot;image&quot;: &quot;http://127.0.0.1:8000/media/categories/sports-categoty3x.png&quot;
+            },
+            &quot;price&quot;: 50,
+            &quot;user&quot;: {
+                &quot;id&quot;: 1,
+                &quot;username&quot;: &quot;daniel&quot;,
+                &quot;email&quot;: &quot;daniel@pewpee.com&quot;,
+                &quot;first_name&quot;: &quot;&quot;,
+                &quot;last_name&quot;: &quot;&quot;
+            },
+            &quot;status&quot;: false
+        },
+        &quot;price&quot;: 56
+    },
+]
+</code></pre>
+<p><strong>URL</strong> : <code>/api/bids/&lt;int:pk&gt;</code></p>
+<p><strong>Method</strong> : <code>GET, PUT, PATCH, DELETE</code></p>
+<p><strong>Auth required</strong> : YES</p>
+<p><strong>Permissions required</strong> : IsAuthenticated</p>
+<h4 id="success-responses_1">Success Responses</h4>
+<p><strong>Code</strong> : <code>200 OK</code></p>
+<p><strong>Content</strong> :</p>
+<pre><code class="language-json">{
+    &quot;id&quot;: 1,
+    &quot;user&quot;: {
+        &quot;id&quot;: 2,
+        &quot;username&quot;: &quot;admin&quot;,
+        &quot;email&quot;: &quot;daniel@pewpee.com&quot;,
+        &quot;first_name&quot;: &quot;&quot;,
+        &quot;last_name&quot;: &quot;&quot;
+    },
+    &quot;listing&quot;: {
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;Broomstick&quot;,
+        &quot;image&quot;: &quot;https://static.wikia.nocookie.net/harrypotter/images/2/29/Nimbus_200.jpg/revision/latest/scale-to-width-down/540?cb=20170721202204&amp;path-prefix=pl&quot;,
+        &quot;description&quot;: &quot;Nimbus 2000 Broomstick&quot;,
+        &quot;category&quot;: {
+            &quot;id&quot;: 5,
+            &quot;title&quot;: &quot;Sports&quot;,
+            &quot;image&quot;: &quot;http://127.0.0.1:8000/media/categories/sports-categoty3x.png&quot;
+        },
+        &quot;price&quot;: 50,
+        &quot;user&quot;: {
+            &quot;id&quot;: 1,
+            &quot;username&quot;: &quot;daniel&quot;,
+            &quot;email&quot;: &quot;daniel@pewpee.com&quot;,
+            &quot;first_name&quot;: &quot;&quot;,
+            &quot;last_name&quot;: &quot;&quot;
+        },
+        &quot;status&quot;: false
+    },
+    &quot;price&quot;: 56
+}
+</code></pre>
+<h3 id="categories">Categories</h3>
+<p><strong>URL</strong> : <code>/api/categories/</code></p>
+<p><strong>Method</strong> : <code>GET, POST</code></p>
+<p><strong>Auth required</strong> : YES</p>
+<p><strong>Permissions required</strong> : IsAuthenticated</p>
+<h4 id="success-responses_2">Success Responses</h4>
+<p><strong>Code</strong> : <code>200 OK</code></p>
+<p><strong>Content</strong> :</p>
+<pre><code class="language-json">[
+    {
+        &quot;id&quot;: 0,
+        &quot;title&quot;: &quot;string&quot;,
+        &quot;image&quot;: &quot;string&quot;
+    }
+]
+</code></pre>
+<p><strong>URL</strong> : <code>/api/categories/&lt;int:pk&gt;</code></p>
+<p><strong>Method</strong> : <code>GET, PUT, PATCH, DELETE</code></p>
+<p><strong>Auth required</strong> : YES</p>
+<p><strong>Permissions required</strong> : IsAuthenticated</p>
+<h4 id="success-responses_3">Success Responses</h4>
+<p><strong>Code</strong> : <code>200 OK</code></p>
+<p><strong>Content</strong> :</p>
+<pre><code class="language-json">{
+    &quot;id&quot;: 0,
+    &quot;title&quot;: &quot;string&quot;,
+    &quot;image&quot;: &quot;string&quot;
+}
+</code></pre>
+<h3 id="comments">Comments</h3>
+<p><strong>URL</strong> : <code>/api/comments/</code></p>
+<p><strong>Method</strong> : <code>GET, POST</code></p>
+<p><strong>Auth required</strong> : YES</p>
+<p><strong>Permissions required</strong> : IsAuthenticated</p>
+<h4 id="success-responses_4">Success Responses</h4>
+<p><strong>Code</strong> : <code>200 OK</code></p>
+<p><strong>Content</strong> :</p>
+<pre><code class="language-json">[
+    {
+        &quot;id&quot;: 0,
+        &quot;user&quot;: {
+            &quot;id&quot;: 0,
+            &quot;username&quot;: &quot;0BqHODclHpFVnTrDzBz9MNN2b@H11+Im6Ytz@iJQQ3COGDRj-HbyufS4BjDsICYBiDcxxSbx5&quot;,
+            &quot;email&quot;: &quot;user@example.com&quot;,
+            &quot;first_name&quot;: &quot;string&quot;,
+            &quot;last_name&quot;: &quot;string&quot;
+        },
+        &quot;listing&quot;: {
+            &quot;id&quot;: 0,
+            &quot;title&quot;: &quot;string&quot;,
+            &quot;image&quot;: &quot;string&quot;,
+            &quot;description&quot;: &quot;string&quot;,
+            &quot;category&quot;: {
+                &quot;id&quot;: 0,
+                &quot;title&quot;: &quot;string&quot;,
+                &quot;image&quot;: &quot;string&quot;
+            },
+            &quot;price&quot;: 9223372036854776000,
+            &quot;user&quot;: {
+                &quot;id&quot;: 0,
+                &quot;username&quot;: &quot;Sy5hibMB3B3gK+JOQKsWx-qJLSYHhVEOJlYHDR3u1qR4TKv64hcdg2VUuaGKuyRtS@y4Hq5HQ7CmXfQ4LJ1XriR.xmPVERkKS&quot;,
+                &quot;email&quot;: &quot;user@example.com&quot;,
+                &quot;first_name&quot;: &quot;string&quot;,
+                &quot;last_name&quot;: &quot;string&quot;
+            },
+            &quot;status&quot;: true
+        },
+        &quot;comment&quot;: &quot;string&quot;,
+        &quot;rating&quot;: 10
+    }
+]
+</code></pre>
+<p><strong>URL</strong> : <code>/api/comments/&lt;int:pk&gt;</code></p>
+<p><strong>Method</strong> : <code>GET, PUT, PATCH, DELETE</code></p>
+<p><strong>Auth required</strong> : YES</p>
+<p><strong>Permissions required</strong> : IsAuthenticated</p>
+<h4 id="success-responses_5">Success Responses</h4>
+<p><strong>Code</strong> : <code>200 OK</code></p>
+<p><strong>Content</strong> :</p>
+<pre><code class="language-json">{
+    &quot;id&quot;: 0,
+    &quot;user&quot;: {
+        &quot;id&quot;: 0,
+        &quot;username&quot;: &quot;m+qFQUC.L0PNb+Lmn@IRCqj54Y&quot;,
+        &quot;email&quot;: &quot;user@example.com&quot;,
+        &quot;first_name&quot;: &quot;string&quot;,
+        &quot;last_name&quot;: &quot;string&quot;
+    },
+    &quot;listing&quot;: {
+        &quot;id&quot;: 0,
+        &quot;title&quot;: &quot;string&quot;,
+        &quot;image&quot;: &quot;string&quot;,
+        &quot;description&quot;: &quot;string&quot;,
+        &quot;category&quot;: {
+            &quot;id&quot;: 0,
+            &quot;title&quot;: &quot;string&quot;,
+            &quot;image&quot;: &quot;string&quot;
+        },
+        &quot;price&quot;: 9223372036854776000,
+        &quot;user&quot;: {
+            &quot;id&quot;: 0,
+            &quot;username&quot;: &quot;6pZ&quot;,
+            &quot;email&quot;: &quot;user@example.com&quot;,
+            &quot;first_name&quot;: &quot;string&quot;,
+            &quot;last_name&quot;: &quot;string&quot;
+        },
+        &quot;status&quot;: true
+    },
+    &quot;comment&quot;: &quot;string&quot;,
+    &quot;rating&quot;: 10
+}
+</code></pre>
+<h3 id="listings">Listings</h3>
+<p><strong>URL</strong> : <code>/api/listings/</code></p>
+<p><strong>Method</strong> : <code>GET, POST</code></p>
+<p><strong>Auth required</strong> : YES</p>
+<p><strong>Permissions required</strong> : IsAuthenticated</p>
+<h4 id="success-responses_6">Success Responses</h4>
+<p><strong>Code</strong> : <code>200 OK</code></p>
+<p><strong>Content</strong> :</p>
+<pre><code class="language-json">[
+    {
+        &quot;id&quot;: 0,
+        &quot;title&quot;: &quot;string&quot;,
+        &quot;image&quot;: &quot;string&quot;,
+        &quot;description&quot;: &quot;string&quot;,
+        &quot;category&quot;: {
+            &quot;id&quot;: 0,
+            &quot;title&quot;: &quot;string&quot;,
+            &quot;image&quot;: &quot;string&quot;
+        },
+        &quot;price&quot;: 9223372036854776000,
+        &quot;user&quot;: {
+            &quot;id&quot;: 0,
+            &quot;username&quot;: &quot;Wy&quot;,
+            &quot;email&quot;: &quot;user@example.com&quot;,
+            &quot;first_name&quot;: &quot;string&quot;,
+            &quot;last_name&quot;: &quot;string&quot;
+        },
+        &quot;status&quot;: true
+    }
+]
+</code></pre>
+<p><strong>URL</strong> : <code>/api/listings/&lt;int:pk&gt;</code></p>
+<p><strong>Method</strong> : <code>GET, PUT, PATCH, DELETE</code></p>
+<p><strong>Auth required</strong> : YES</p>
+<p><strong>Permissions required</strong> : IsAuthenticated</p>
+<h4 id="success-responses_7">Success Responses</h4>
+<p><strong>Code</strong> : <code>200 OK</code></p>
+<p><strong>Content</strong> :</p>
+<pre><code class="language-json">{
+    &quot;id&quot;: 0,
+    &quot;title&quot;: &quot;string&quot;,
+    &quot;image&quot;: &quot;string&quot;,
+    &quot;description&quot;: &quot;string&quot;,
+    &quot;category&quot;: {
+        &quot;id&quot;: 0,
+        &quot;title&quot;: &quot;string&quot;,
+        &quot;image&quot;: &quot;string&quot;
+    },
+    &quot;price&quot;: 9223372036854776000,
+    &quot;user&quot;: {
+        &quot;id&quot;: 0,
+        &quot;username&quot;: &quot;Srmhuqrn_pLRu@_lOvuKs5.s1v7Wac4HbQMAx33bn-xttlaEu7FK300vac+EqSXXH1qvt&quot;,
+        &quot;email&quot;: &quot;user@example.com&quot;,
+        &quot;first_name&quot;: &quot;string&quot;,
+        &quot;last_name&quot;: &quot;string&quot;
+    },
+    &quot;status&quot;: true
+}
+</code></pre>
+<h3 id="users">Users</h3>
+<p><strong>URL</strong> : <code>/api/users/</code></p>
+<p><strong>Method</strong> : <code>GET, POST</code></p>
+<p><strong>Auth required</strong> : YES</p>
+<p><strong>Permissions required</strong> : IsAuthenticated</p>
+<h4 id="success-responses_8">Success Responses</h4>
+<p><strong>Code</strong> : <code>200 OK</code></p>
+<p><strong>Content</strong> :</p>
+<pre><code class="language-json">[
+    {
+        &quot;id&quot;: 0,
+        &quot;username&quot;: &quot;80e7ark.tL&quot;,
+        &quot;email&quot;: &quot;user@example.com&quot;,
+        &quot;first_name&quot;: &quot;string&quot;,
+        &quot;last_name&quot;: &quot;string&quot;
+    }
+]
+</code></pre>
+<p><strong>URL</strong> : <code>/api/users/&lt;int:pk&gt;</code></p>
+<p><strong>Method</strong> : <code>GET, PUT, PATCH, DELETE</code></p>
+<p><strong>Auth required</strong> : YES</p>
+<p><strong>Permissions required</strong> : IsAuthenticated</p>
+<h4 id="success-responses_9">Success Responses</h4>
+<p><strong>Code</strong> : <code>200 OK</code></p>
+<p><strong>Content</strong> :</p>
+<pre><code class="language-json">{
+    &quot;id&quot;: 0,
+    &quot;username&quot;: &quot;JEybMILwBEZST0_-@HnnxKtPHqIaLkLNT0bUjUwkKcX0eIiM3-5G2EUcZlmxRO+_ZXSbez7n7cect@RcGDac&quot;,
+    &quot;email&quot;: &quot;user@example.com&quot;,
+    &quot;first_name&quot;: &quot;string&quot;,
+    &quot;last_name&quot;: &quot;string&quot;
+}
+</code></pre>
+<h3 id="watchlists">Watchlists</h3>
+<p><strong>URL</strong> : <code>/api/watchlists/</code></p>
+<p><strong>Method</strong> : <code>GET, POST</code></p>
+<p><strong>Auth required</strong> : YES</p>
+<p><strong>Permissions required</strong> : IsAuthenticated</p>
+<h4 id="success-responses_10">Success Responses</h4>
+<p><strong>Code</strong> : <code>200 OK</code></p>
+<p><strong>Content</strong> :</p>
+<pre><code class="language-json">[
+    {
+        &quot;id&quot;: 0,
+        &quot;user&quot;: {
+            &quot;id&quot;: 0,
+            &quot;username&quot;: &quot;Lh4B-xt0F_KN-BsIavPH.t0nF2&quot;,
+            &quot;email&quot;: &quot;user@example.com&quot;,
+            &quot;first_name&quot;: &quot;string&quot;,
+            &quot;last_name&quot;: &quot;string&quot;
+        },
+        &quot;listing&quot;: {
+            &quot;id&quot;: 0,
+            &quot;title&quot;: &quot;string&quot;,
+            &quot;image&quot;: &quot;string&quot;,
+            &quot;description&quot;: &quot;string&quot;,
+            &quot;category&quot;: {
+                &quot;id&quot;: 0,
+                &quot;title&quot;: &quot;string&quot;,
+                &quot;image&quot;: &quot;string&quot;
+            },
+            &quot;price&quot;: 9223372036854776000,
+            &quot;user&quot;: {
+                &quot;id&quot;: 0,
+                &quot;username&quot;: &quot;RAG2e7xhIqs@LdnXksJADfqspqRLyM-PLXCUvwV-+F99r795wc7VkjIvs5@g_inqxK37eR&quot;,
+                &quot;email&quot;: &quot;user@example.com&quot;,
+                &quot;first_name&quot;: &quot;string&quot;,
+                &quot;last_name&quot;: &quot;string&quot;
+            },
+            &quot;status&quot;: true
+        }
+    }
+]
+</code></pre>
+<p><strong>URL</strong> : <code>/api/watchlists/&lt;int:pk&gt;</code></p>
+<p><strong>Method</strong> : <code>GET, PUT, PATCH, DELETE</code></p>
+<p><strong>Auth required</strong> : YES</p>
+<p><strong>Permissions required</strong> : IsAuthenticated</p>
+<h4 id="success-responses_11">Success Responses</h4>
+<p><strong>Code</strong> : <code>200 OK</code></p>
+<p><strong>Content</strong> :</p>
+<pre><code class="language-json">{
+    &quot;id&quot;: 0,
+    &quot;user&quot;: {
+        &quot;id&quot;: 0,
+        &quot;username&quot;: &quot;TLtKUAW9u@WDTHOvyrX8&quot;,
+        &quot;email&quot;: &quot;user@example.com&quot;,
+        &quot;first_name&quot;: &quot;string&quot;,
+        &quot;last_name&quot;: &quot;string&quot;
+    },
+    &quot;listing&quot;: {
+        &quot;id&quot;: 0,
+        &quot;title&quot;: &quot;string&quot;,
+        &quot;image&quot;: &quot;string&quot;,
+        &quot;description&quot;: &quot;string&quot;,
+        &quot;category&quot;: {
+            &quot;id&quot;: 0,
+            &quot;title&quot;: &quot;string&quot;,
+            &quot;image&quot;: &quot;string&quot;
+        },
+        &quot;price&quot;: 9223372036854776000,
+        &quot;user&quot;: {
+            &quot;id&quot;: 0,
+            &quot;username&quot;: &quot;t.9a7Nusbrsa4o35z-ZoYgWiaQfddQF2G9p9oHZN9xoqv1_I@TLpmvd4Qk@Gcf17DK+nEPgMmFLCkE&quot;,
+            &quot;email&quot;: &quot;user@example.com&quot;,
+            &quot;first_name&quot;: &quot;string&quot;,
+            &quot;last_name&quot;: &quot;string&quot;
+        },
+        &quot;status&quot;: true
+    }
+}
+</code></pre>
+<h3 id="_3">Пример</h3>
+<p>Попробуем получить список всех листингов аукионов.</p>
+<pre><code class="language-sh">curl -LX GET http://127.0.0.1:8000/api/listings/  
+</code></pre>
+<p>У нас не получится это сделать, так как мы не предоставили токен дорступа.</p>
+<pre><code class="language-json">{ &quot;detail&quot;: &quot;Authentication credentials were not provided.&quot; }
+</code></pre>
+<p>Так как наше приложение использует djoser для реализации аутентификации, то сначала запросим токен доступа.</p>
+<pre><code class="language-sh">curl -X POST http://127.0.0.1:8000/auth/token/login/ --data 'username=daniel2&amp;password=NgYjjr@3bJxFRsR'
+</code></pre>
+<p>Ответ от сервера с токеном.</p>
+<pre><code class="language-json">{ &quot;auth_token&quot;: &quot;7350939e63742af46f5f07682c6ba6f526580481&quot; }
+</code></pre>
+<p>Посмотрим все существующие листинги с нашим токеном.</p>
+<pre><code class="language-sh">curl -LX GET http://127.0.0.1:8000/api/listings/ -H 'Authorization: Token &lt;TOKEN&gt;'
+</code></pre>
+<p>Ответ от сервера таким.</p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: 1,
+    &quot;title&quot;: &quot;Broomstick&quot;,
+    &quot;image&quot;: &quot;https://static.wikia.nocookie.net/harrypotter/images/2/29/Nimbus_200.jpg/revision/latest/scale-to-width-down/540?cb=20170721202204&amp;path-prefix=pl&quot;,
+    &quot;description&quot;: &quot;Nimbus 2000 Broomstick&quot;,
+    &quot;category&quot;: {
+      &quot;id&quot;: 5,
+      &quot;title&quot;: &quot;Sports&quot;,
+      &quot;image&quot;: &quot;http://127.0.0.1:8000/media/categories/sports-categoty3x.png&quot;
+    },
+    &quot;price&quot;: 50,
+    &quot;user&quot;: {
+      &quot;id&quot;: 1,
+      &quot;username&quot;: &quot;daniel&quot;,
+      &quot;email&quot;: &quot;daniel@pewpee.com&quot;,
+      &quot;first_name&quot;: &quot;&quot;,
+      &quot;last_name&quot;: &quot;&quot;
+    },
+    &quot;status&quot;: false
+  },
+  {
+    &quot;id&quot;: 2,
+    &quot;title&quot;: &quot;iPhone 12&quot;,
+    &quot;image&quot;: &quot;https://cdn.tmobile.com/content/dam/t-mobile/en-p/cell-phones/apple/Apple-iPhone-12-mini/Blue/Apple-iPhone-12-mini-Blue-frontimage.png&quot;,
+    &quot;description&quot;: null,
+    &quot;category&quot;: {
+      &quot;id&quot;: 1,
+      &quot;title&quot;: &quot;Electronics&quot;,
+      &quot;image&quot;: &quot;http://127.0.0.1:8000/media/categories/electronics-categoty.png&quot;
+    },
+    &quot;price&quot;: 1000,
+    &quot;user&quot;: {
+      &quot;id&quot;: 1,
+      &quot;username&quot;: &quot;daniel&quot;,
+      &quot;email&quot;: &quot;daniel@pewpee.com&quot;,
+      &quot;first_name&quot;: &quot;&quot;,
+      &quot;last_name&quot;: &quot;&quot;
+    },
+    &quot;status&quot;: true
+  },
+  {
+    &quot;id&quot;: 3,
+    &quot;title&quot;: &quot;New Test&quot;,
+    &quot;image&quot;: null,
+    &quot;description&quot;: null,
+    &quot;category&quot;: null,
+    &quot;price&quot;: 10,
+    &quot;user&quot;: {
+      &quot;id&quot;: 2,
+      &quot;username&quot;: &quot;admin&quot;,
+      &quot;email&quot;: &quot;daniel@pewpee.com&quot;,
+      &quot;first_name&quot;: &quot;&quot;,
+      &quot;last_name&quot;: &quot;&quot;
+    },
+    &quot;status&quot;: false
+  },
+  {
+    &quot;id&quot;: 4,
+    &quot;title&quot;: &quot;Quadra 66&quot;,
+    &quot;image&quot;: &quot;https://static3.hotcarsimages.com/wordpress/wp-content/uploads/2020/10/Quadra-Type-66-1-e1603386447228.jpg&quot;,
+    &quot;description&quot;: &quot;A car from Cyberpunk 2077&quot;,
+    &quot;category&quot;: {
+      &quot;id&quot;: 2,
+      &quot;title&quot;: &quot;Motors&quot;,
+      &quot;image&quot;: &quot;http://127.0.0.1:8000/media/categories/motors-categoty3x.png&quot;
+    },
+    &quot;price&quot;: 60000,
+    &quot;user&quot;: {
+      &quot;id&quot;: 1,
+      &quot;username&quot;: &quot;daniel&quot;,
+      &quot;email&quot;: &quot;daniel@pewpee.com&quot;,
+      &quot;first_name&quot;: &quot;&quot;,
+      &quot;last_name&quot;: &quot;&quot;
+    },
+    &quot;status&quot;: true
+  },
+  {
+    &quot;id&quot;: 7,
+    &quot;title&quot;: &quot;Test&quot;,
+    &quot;image&quot;: &quot;&quot;,
+    &quot;description&quot;: &quot;&quot;,
+    &quot;category&quot;: {
+      &quot;id&quot;: 5,
+      &quot;title&quot;: &quot;Sports&quot;,
+      &quot;image&quot;: &quot;http://127.0.0.1:8000/media/categories/sports-categoty3x.png&quot;
+    },
+    &quot;price&quot;: 123,
+    &quot;user&quot;: {
+      &quot;id&quot;: 3,
+      &quot;username&quot;: &quot;test&quot;,
+      &quot;email&quot;: &quot;test@pewpee.com&quot;,
+      &quot;first_name&quot;: &quot;&quot;,
+      &quot;last_name&quot;: &quot;&quot;
+    },
+    &quot;status&quot;: false
+  }
+]
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../lab-2/" class="btn btn-neutral float-left" title="Лабораторная работа #2"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../lab-4/" class="btn btn-neutral float-right" title="Лабораторная работа #4">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../lab-2/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../lab-4/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Лабораторная работа #2 - Web-программирвоание</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u041b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u043d\u0430\u044f \u0440\u0430\u0431\u043e\u0442\u0430 #2";
+        var mkdocs_page_input_path = "lab-2.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Web-программирвоание
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Главная</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lab-1/">Лабораторная работа #1</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Лабораторная работа #2</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">Задание</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Реализация</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">Создание проекта</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">Создание базы данных</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#url">url конфигурация</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lab-3/">Лабораторная работа #3</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lab-4/">Лабораторная работа #4</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../pract-3-1/">Практическая работа #3.1</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Web-программирвоание</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Лабораторная работа #2</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="2">Лабораторная работа #2</h1>
+<h2 id="_1">Задание</h2>
+<p>Свой вариант. Реализовать веб сервис аукционов. Необходимо реализовать следующий функционал:</p>
+<ul>
+<li>Регистрация новых пользоватлей.</li>
+<li>Просмотр активных аукионов.</li>
+<li>Создание аукицона пользователями.</li>
+<li>Написание отзывов к ацкуионам.</li>
+<li>Создание watchlist'а.</li>
+</ul>
+<h2 id="_2">Реализация</h2>
+<h3 id="_3">Создание проекта</h3>
+<p>Для начала создаем виртуальную среду, устанавливаем Django и создаем проект.</p>
+<pre><code class="language-python">python3 -m venv commerce-venv
+pip3 install django
+django-admin starproject commerce
+</code></pre>
+<p>После создания, добавляем в проект приложение auctions.</p>
+<pre><code class="language-python">./manage.py startapp auctions
+</code></pre>
+<h3 id="_4">Создание базы данных</h3>
+<p>Модель <code>User</code> используется для авторизации пользователей.</p>
+<pre><code class="language-python">class User(AbstractUser):
+    pass
+</code></pre>
+<p>Для того, чтобы Django использовал данную модель для регистрации и входа необходимо в <code>settings.py</code> добавить строку:</p>
+<pre><code class="language-python">AUTH_USER_MODEL = 'auctions.User'
+</code></pre>
+<p>Модель <code>Listing</code> хранит данные о проходящем аукционе.</p>
+<pre><code class="language-python">class Listing(models.Model):
+    title = models.CharField(max_length=64)
+    image = models.URLField(max_length=280, blank=True, null=True)
+    description = models.CharField(max_length=280, blank=True, null=True)
+    category = models.ForeignKey(&quot;Category&quot;, on_delete=models.CASCADE, related_name=&quot;listings&quot;, blank=True, null=True)
+    price = models.IntegerField()
+    user = models.ForeignKey(&quot;User&quot;, on_delete=models.CASCADE)
+    status = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.title
+</code></pre>
+<p><code>Category</code> хранит информацию о категориях на которые разбиваются проходящие аукционы.</p>
+<pre><code class="language-python">class Category(models.Model):
+    title = models.CharField(max_length=64)
+    image = models.ImageField(upload_to=&quot;media/categories&quot;)
+
+    def __str__(self):
+        return self.title
+</code></pre>
+<p><code>Bid</code> хранит информацию о ставках на аукционе.</p>
+<pre><code class="language-python">class Bid(models.Model):
+    user = models.ForeignKey(&quot;User&quot;, on_delete=models.CASCADE, related_name=&quot;bids&quot;)
+    listing = models.ForeignKey(&quot;Listing&quot;, on_delete=models.CASCADE, related_name=&quot;bids&quot;)
+    price = models.IntegerField()
+
+    def __str__(self):
+        return f&quot;{self.id}. {self.user.username} bid {self.listing.title} for {self.price}&quot;
+</code></pre>
+<p><code>Comment</code> хранит данные о комментариях под аукционами, включая рейтинг (1-10).</p>
+<pre><code class="language-python">class Comment(models.Model):
+    user = models.ForeignKey(&quot;User&quot;, on_delete=models.CASCADE, related_name=&quot;comments&quot;)
+    listing = models.ForeignKey(&quot;Listing&quot;, on_delete=models.CASCADE, related_name=&quot;comments&quot;)
+    comment = models.CharField(max_length=280)
+    rating = models.IntegerField(
+        default=1,
+        validators=[
+            MaxValueValidator(10),
+            MinValueValidator(1)
+        ]
+    )
+
+    def __str__(self):
+        return f&quot;{self.id}. {self.user}&quot;
+</code></pre>
+<p><code>Watchlist</code> хранит информацию об отслеживаемых аукционах пользователями.</p>
+<pre><code class="language-python">class Watchlist(models.Model):
+    user = models.ForeignKey(&quot;User&quot;, on_delete=models.CASCADE, related_name=&quot;watchlist&quot;)
+    listing = models.ForeignKey(&quot;Listing&quot;, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f&quot;{self.id}. {self.user.username}: {self.listing.title}&quot;
+</code></pre>
+<h3 id="url">url конфигурация</h3>
+<p>Создаем файл <code>urls.py</code> со следующим кодом в папке нашего приложения <code>auctions</code>. Помимо указаний всех <code>path</code>, прописываем путь к статичным файлам (медиа файлам).</p>
+<pre><code class="language-python">from django.urls import path
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+from . import views
+
+urlpatterns = [
+    path(&quot;&quot;, views.index, name=&quot;index&quot;),
+    path(&quot;login&quot;, views.login_view, name=&quot;login&quot;),
+    path(&quot;logout&quot;, views.logout_view, name=&quot;logout&quot;),
+    path(&quot;register&quot;, views.register, name=&quot;register&quot;),
+    path(&quot;categories&quot;, views.categories, name=&quot;categories&quot;),
+    path(&quot;categories/&lt;int:category_id&gt;&quot;, views.category, name=&quot;category&quot;),
+    path(&quot;watchlist&quot;, views.watchlist, name=&quot;watchlist&quot;),
+    path(&quot;listing/&lt;int:listing_id&gt;&quot;, views.listing, name=&quot;listing&quot;),
+    path(&quot;listing/create&quot;, views.create_listing, name=&quot;create_listing&quot;)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+</code></pre>
+<p>Для того, чтобы работала данная url конфигурация, в файле <code>commerce/urls.py</code> прописываем urlpatterns так:</p>
+<pre><code class="language-python">urlpatterns = [
+    path(&quot;admin/&quot;, admin.site.urls),
+    path(&quot;&quot;, include(&quot;auctions.urls&quot;))
+]
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../lab-1/" class="btn btn-neutral float-left" title="Лабораторная работа #1"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../lab-3/" class="btn btn-neutral float-right" title="Лабораторная работа #3">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../lab-1/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../lab-3/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
